@@ -41,7 +41,7 @@ namespace UniversityStudentsApp.Models
 
         public ICollection <Course> FirstTeacherCourses { get; set; }
 
-        public ICollection <Course> SecondTeacherCourse { get; set; }
+        public ICollection <Course> SecondTeacherCourses { get; set; }
 
 
 
