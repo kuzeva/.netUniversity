@@ -35,6 +35,8 @@ namespace UniversityStudentsApp.Models
         [Display(Name = "Second Professor")]
         public Teacher SecondTeacher { get; set; }
 
-        public ICollection <Enrollment> Students { get; set; }
+        public ICollection<Enrollment> Students { get; set; }
+
+       // public ICollection<Teacher> Teachers { get; set; }
     }
 }

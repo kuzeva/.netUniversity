@@ -39,9 +39,9 @@ namespace UniversityStudentsApp.Models
             get { return String.Format("{0} {1}", FirstName, LastName); }
         }
 
-        public ICollection <Course> FirstTeacherCourses { get; set; }
+        public ICollection<Course> FirstTeacherCourses { get; set; }
 
-        public ICollection <Course> SecondTeacherCourses { get; set; }
+        public ICollection<Course> SecondTeacherCourses { get; set; }
 
 
 
