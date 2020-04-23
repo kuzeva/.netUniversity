@@ -66,13 +66,13 @@ namespace UniversityStudentsApp.Migrations
                         column: x => x.FirstTeacherId,
                         principalTable: "Teacher",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.NoAction);
                     table.ForeignKey(
                         name: "FK_Courses_Teacher_SecondTeacherId",
                         column: x => x.SecondTeacherId,
                         principalTable: "Teacher",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.NoAction);
                 });
 
             migrationBuilder.CreateTable(

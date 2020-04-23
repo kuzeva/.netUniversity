@@ -10,7 +10,7 @@ using UniversityStudentsApp.Data;
 namespace UniversityStudentsApp.Migrations
 {
     [DbContext(typeof(UniversityStudentsAppContext))]
-    [Migration("20200422223310_University")]
+    [Migration("20200423124536_University")]
     partial class University
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
