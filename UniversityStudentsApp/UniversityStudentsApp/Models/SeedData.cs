@@ -21,10 +21,10 @@ namespace UniversityStudentsApp.Models
                 }
 
                 context.Student.AddRange(
-                    new Student { StudentId = "94/2019", FirstName = "Petre", LastName = "Petrevski", AcquiredCredits = 120, EducationLevel = "First Year", EnrollmentDate = DateTime.Parse("2019 - 8 - 21"), CurrentSemester = 2 },
-                    new Student { StudentId = "64/2019", FirstName = "Zlatko", LastName = "Zlatkovski", AcquiredCredits = 100, EducationLevel = "First Year", EnrollmentDate = DateTime.Parse("2019 - 8 - 21"), CurrentSemester = 2 },
-                    new Student { StudentId = "59/2019", FirstName = "Ivan", LastName = "Ivanovski", AcquiredCredits = 120, EducationLevel = "First Year", EnrollmentDate = DateTime.Parse("2019 - 8 - 21"), CurrentSemester = 2 },
-                    new Student { StudentId = "26/2019", FirstName = "Stefan", LastName = "Stefanovski", AcquiredCredits = 100, EducationLevel = "First Year", EnrollmentDate = DateTime.Parse("2019 - 8 - 21"), CurrentSemester = 2 }
+                    new Student { StudentId = "94/2019", FirstName = "Petre", LastName = "Petrevski", AcquiredCredits = 30, EducationLevel = "First Year", EnrollmentDate = DateTime.Parse("2019 - 8 - 21"), CurrentSemester = 2 },
+                    new Student { StudentId = "64/2019", FirstName = "Zlatko", LastName = "Zlatkovski", AcquiredCredits = 25, EducationLevel = "First Year", EnrollmentDate = DateTime.Parse("2019 - 8 - 21"), CurrentSemester = 2 },
+                    new Student { StudentId = "59/2019", FirstName = "Ivan", LastName = "Ivanovski", AcquiredCredits = 30, EducationLevel = "First Year", EnrollmentDate = DateTime.Parse("2019 - 8 - 21"), CurrentSemester = 2 },
+                    new Student { StudentId = "26/2019", FirstName = "Stefan", LastName = "Stefanovski", AcquiredCredits = 30, EducationLevel = "First Year", EnrollmentDate = DateTime.Parse("2019 - 8 - 21"), CurrentSemester = 2 }
                     );
                 context.SaveChanges();
 
@@ -61,13 +61,13 @@ namespace UniversityStudentsApp.Models
                 context.SaveChanges();
 
                 context.Enrollment.AddRange(
-                    new Enrollment { CourseId = 1 , StudentId = 1 , ExamPoints = 62 , AditionalPoints = 10, SeminalPoints = 10 , ProjectPoints = 20, Year = 2020, Grade = 8, FinishDate=DateTime.Parse("2020-1-15")},
-                    new Enrollment { CourseId = 1, StudentId = 2, ExamPoints = 49, AditionalPoints = 10, SeminalPoints = 10, ProjectPoints = 20, Year = 2020, Grade = 7, FinishDate = DateTime.Parse("2020-1-15") },
-                    new Enrollment { CourseId = 1, StudentId = 3, ExamPoints = 73, AditionalPoints = 10, SeminalPoints = 10, ProjectPoints = 20, Year = 2020, Grade = 9, FinishDate = DateTime.Parse("2020-1-15") },
-                    new Enrollment { CourseId = 1, StudentId = 4, ExamPoints = 66, AditionalPoints = 9, SeminalPoints = 10, ProjectPoints = 20, Year = 2020, Grade = 8, FinishDate = DateTime.Parse("2020-1-15") },
-                    new Enrollment { CourseId = 2, StudentId = 1, ExamPoints = 56, AditionalPoints = 10, SeminalPoints = 10, ProjectPoints = 20, Year = 2020, Grade = 7, FinishDate = DateTime.Parse("2020-1-15") },
-                    new Enrollment { CourseId = 2, StudentId = 3, ExamPoints = 49, AditionalPoints = 8, SeminalPoints = 10, ProjectPoints = 20, Year = 2020, Grade = 6, FinishDate = DateTime.Parse("2020-1-15") },
-                    new Enrollment { CourseId = 2, StudentId = 4, ExamPoints = 84, AditionalPoints = 10, SeminalPoints = 10, ProjectPoints = 20, Year = 2020, Grade = 10, FinishDate = DateTime.Parse("2020-1-15") }
+                    new Enrollment { CourseId = 1 , StudentId = 1 , ExamPoints = 62 , AditionalPoints = 10, SeminarPoints = 10 , ProjectPoints = 20, Year = 2020, Grade = 8, FinishDate=DateTime.Parse("2020-1-15")},
+                    new Enrollment { CourseId = 1, StudentId = 2, ExamPoints = 49, AditionalPoints = 10, SeminarPoints = 10, ProjectPoints = 20, Year = 2020, Grade = 7, FinishDate = DateTime.Parse("2020-1-15") },
+                    new Enrollment { CourseId = 1, StudentId = 3, ExamPoints = 73, AditionalPoints = 10, SeminarPoints = 10, ProjectPoints = 20, Year = 2020, Grade = 9, FinishDate = DateTime.Parse("2020-1-15") },
+                    new Enrollment { CourseId = 1, StudentId = 4, ExamPoints = 66, AditionalPoints = 9, SeminarPoints = 10, ProjectPoints = 20, Year = 2020, Grade = 8, FinishDate = DateTime.Parse("2020-1-15") },
+                    new Enrollment { CourseId = 2, StudentId = 1, ExamPoints = 56, AditionalPoints = 10, SeminarPoints = 10, ProjectPoints = 20, Year = 2020, Grade = 7, FinishDate = DateTime.Parse("2020-1-15") },
+                    new Enrollment { CourseId = 2, StudentId = 3, ExamPoints = 49, AditionalPoints = 8, SeminarPoints = 10, ProjectPoints = 20, Year = 2020, Grade = 6, FinishDate = DateTime.Parse("2020-1-15") },
+                    new Enrollment { CourseId = 2, StudentId = 4, ExamPoints = 84, AditionalPoints = 10, SeminarPoints = 10, ProjectPoints = 20, Year = 2020, Grade = 10, FinishDate = DateTime.Parse("2020-1-15") }
 
                     );
                 context.SaveChanges();

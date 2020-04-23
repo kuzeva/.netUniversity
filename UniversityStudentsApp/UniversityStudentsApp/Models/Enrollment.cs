@@ -19,28 +19,27 @@ namespace UniversityStudentsApp.Models
         public int StudentId { get; set; }
         public Student Student { get; set; }
 
-        [StringLength(10, MinimumLength = 2)]
-        public string Semester { get; set; }
+        public int? Semester { get; set; }
 
-        public int Year { get; set; }
+        public int? Year { get; set; }
 
-        public int Grade { get; set; }
+        public int? Grade { get; set; }
 
         [StringLength(255, MinimumLength = 10)]
-        public string SeminalURL { get; set; }
+        public string SeminarURL { get; set; }
 
         [StringLength(255, MinimumLength = 10)]
         public string ProjectURL { get; set; }
 
-        public int ExamPoints { get; set; }
+        public int? ExamPoints { get; set; }
 
-        public int SeminalPoints { get; set; }
+        public int? SeminarPoints { get; set; }
 
-        public int ProjectPoints { get; set; }
+        public int? ProjectPoints { get; set; }
 
-        public int AditionalPoints { get; set; }
+        public int? AditionalPoints { get; set; }
 
-        public DateTime FinishDate { get; set; }
+        public DateTime? FinishDate { get; set; }
 
 
     }
