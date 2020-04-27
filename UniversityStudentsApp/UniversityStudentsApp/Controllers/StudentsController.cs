@@ -20,9 +20,29 @@ namespace UniversityStudentsApp.Controllers
         }
 
         // GET: Students
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string searchFirstName, string searchLastName, string index)
         {
-            return View(await _context.Student.ToListAsync());
+            // return View(await _context.Student.ToListAsync());
+            ViewData["CurrentFilter"] = searchFirstName;
+            ViewData["CurrentFilter2"] = searchLastName;
+            ViewData["CurrentFilter3"] = index;
+
+            var students = from s in _context.Student
+                           select s;
+
+            if (!String.IsNullOrEmpty(searchFirstName))
+            {
+                students = students.Where(s => s.FirstName.Contains(searchFirstName));
+            }
+            if (!String.IsNullOrEmpty(searchLastName))
+            {
+                students = students.Where(s => s.LastName.Contains(searchLastName));
+            }
+            if (!String.IsNullOrEmpty(index))
+            {
+                students = students.Where(s => s.StudentId.Contains(index));
+            }
+            return View(await students.AsNoTracking().ToListAsync());
         }
 
         // GET: Students/Details/5
@@ -34,7 +54,10 @@ namespace UniversityStudentsApp.Controllers
             }
 
             var student = await _context.Student
+                .Include(s => s.Courses)
+                .ThenInclude(e => e.Course)
                 .FirstOrDefaultAsync(m => m.Id == id);
+
             if (student == null)
             {
                 return NotFound();
@@ -54,7 +77,7 @@ namespace UniversityStudentsApp.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,StudentId,FirstName,LastName,EnrollmentDate,AcquiredCredits,CurrentSemester,EducationLevel")] Student student)
+        public async Task<IActionResult> Create([Bind("StudentId,FirstName,LastName,EnrollmentDate,AcquiredCredits,CurrentSemester,EducationLevel")] Student student)
         {
             if (ModelState.IsValid)
             {

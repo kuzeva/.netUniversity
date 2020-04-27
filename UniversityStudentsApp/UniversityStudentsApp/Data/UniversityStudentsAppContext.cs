@@ -24,7 +24,7 @@ namespace UniversityStudentsApp.Data
         {
             builder.Entity<Enrollment>()
                 .HasOne<Student>(p => p.Student)
-                .WithMany(p => p.Cources)
+                .WithMany(p => p.Courses)
                 .HasForeignKey(p => p.CourseId);
 
         builder.Entity<Enrollment>()

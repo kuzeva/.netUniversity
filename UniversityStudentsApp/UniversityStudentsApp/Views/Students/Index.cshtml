@@ -4,7 +4,16 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<h1>Students</h1>
+
+<form asp-controller="Students" asp-action="Index" method="get">
+    <p>
+        First Name <input type="text" name="searchFirstName" value="@ViewData["CurrentFilter"]" />
+        Last Name: <input type="text" name="searchLastName" value="@ViewData["CurrentFilter2"]" />
+        Index: <input type="text" name="index" value="@ViewData["CurrentFilter3"]" />
+        <input type="submit" value="Filter" />
+    </p>
+</form>
 
 <p>
     <a asp-action="Create">Create New</a>
@@ -33,7 +42,9 @@
             <th>
                 @Html.DisplayNameFor(model => model.EducationLevel)
             </th>
-            <th></th>
+            <th>
+                @Html.DisplayNameFor(model => model.Courses)
+            </th>
         </tr>
     </thead>
     <tbody>
@@ -60,6 +71,16 @@
             <td>
                 @Html.DisplayFor(modelItem => item.EducationLevel)
             </td>
+            
+                @foreach(var course in Model)
+                {
+                    
+                        <td>
+                            @Html.DisplayFor(modelItem => course.Courses)
+                        </td>
+                    
+                }
+            
             <td>
                 <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
                 <a asp-action="Details" asp-route-id="@item.Id">Details</a> |

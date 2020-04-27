@@ -33,7 +33,7 @@ namespace UniversityStudentsApp.Models
         [StringLength(25 , MinimumLength = 5)]
         public string EducationLevel { get; set; }
 
-        public ICollection <Enrollment> Cources { get; set; }
+        public ICollection <Enrollment> Courses { get; set; }
 
         public string FullName
         {
