@@ -20,13 +20,38 @@ namespace UniversityStudentsApp.Controllers
         }
 
         // GET: Teachers
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string searchFirstName, string searchLastName, string searchDegree, string searchARank)
         {
-            return View(await _context.Teacher.ToListAsync());
-        }
+            // return View(await _context.Teacher.ToListAsync());
+            ViewData["CurrentFilter4"] = searchFirstName;
+            ViewData["CurrentFilter5"] = searchLastName;
+            ViewData["CurrentFilter6"] = searchDegree;
+            ViewData["CurrentFilter7"] = searchARank;
 
-        // GET: Teachers/Details/5
-        public async Task<IActionResult> Details(int? id)
+            var teachers = from s in _context.Teacher
+                           select s;
+
+            if (!String.IsNullOrEmpty(searchFirstName))
+            {
+                teachers = teachers.Where(s => s.FirstName.Contains(searchFirstName));
+            }
+            if (!String.IsNullOrEmpty(searchLastName))
+            {
+                teachers = teachers.Where(s => s.LastName.Contains(searchLastName));
+
+            }
+            if (!String.IsNullOrEmpty(searchDegree))
+            {
+                teachers = teachers.Where(s => s.Degree.Contains(searchDegree));
+            }
+            if (!String.IsNullOrEmpty(searchARank))
+            {
+                teachers = teachers.Where(s => s.AcademicRank.Contains(searchARank));
+            }
+            return View(await teachers.AsNoTracking().ToListAsync());
+        }
+            // GET: Teachers/Details/5
+            public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
             {
