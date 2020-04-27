@@ -48,6 +48,11 @@ namespace UniversityStudentsApp.Controllers
             {
                 teachers = teachers.Where(s => s.AcademicRank.Contains(searchARank));
             }
+
+            teachers = teachers.Include(m => m.FirstTeacherCourses)
+                .Include(m => m.SecondTeacherCourses);
+
+
             return View(await teachers.AsNoTracking().ToListAsync());
         }
             // GET: Teachers/Details/5
@@ -59,7 +64,10 @@ namespace UniversityStudentsApp.Controllers
             }
 
             var teacher = await _context.Teacher
+                .Include(p => p.FirstTeacherCourses)
+                .Include(p => p.SecondTeacherCourses)
                 .FirstOrDefaultAsync(m => m.Id == id);
+
             if (teacher == null)
             {
                 return NotFound();

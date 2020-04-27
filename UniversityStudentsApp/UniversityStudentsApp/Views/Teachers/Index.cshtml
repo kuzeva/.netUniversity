@@ -5,14 +5,16 @@
 }
 
 <h1>Professors</h1>
+<br />
 <form asp-controller="Teachers" asp-action="Index" method="get">
-<p>
-    First Name: <input type="text" name="searchFirstName" value="@ViewData["CurrentFilter4"]" />
-    Last Name: <input type="text" name="searchLastName" value="@ViewData["CurrentFilter5"]" />
-    Degree:  <input type="text" name="searchDegree" value="@ViewData["CurrentFilter6"]" />
-    Academic Rank: <input type="text" name="searchARank" value="@ViewData["CurrentFilter7"]" />
-    <input type="submit" value="Filter" />
-</p>
+    <p>
+        First Name: <input type="text" name="searchFirstName" value="@ViewData["CurrentFilter4"]" />
+        Last Name: <input type="text" name="searchLastName" value="@ViewData["CurrentFilter5"]" />
+        Degree:  <input type="text" name="searchDegree" value="@ViewData["CurrentFilter6"]" />
+        Academic Rank: <input type="text" name="searchARank" value="@ViewData["CurrentFilter7"]" />
+        <input type="submit" value="Filter" />  |
+        <a asp-action="Index"> Back to Full List</a>
+    </p>
 </form>
 
 
@@ -40,37 +42,68 @@
             <th>
                 @Html.DisplayNameFor(model => model.HireDate)
             </th>
-            <th></th>
+            <th>
+                First Professor On
+            </th>
+            <th>
+                Second Proffesor On
+            </th>
         </tr>
     </thead>
     <tbody>
         @foreach (var item in Model)
         {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.FirstName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.LastName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Degree)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.AcademicRank)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.OfficeNumber)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.HireDate)
-                </td>
-                <td>
-                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-                </td>
-            </tr>
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.FirstName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LastName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Degree)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AcademicRank)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OfficeNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.HireDate)
+            </td>
+            <td>
+                @if (item.FirstTeacherCourses != null)
+                {
+                    @foreach (var course in item.FirstTeacherCourses)
+                    {
+                        @if (course.Id != 0)
+                        {
+                            <a asp-controller="Courses" asp-action="Details" asp-route-id="@course.Id"> @course.Title</a> <br />
+                        }
+                    }
+                }
+
+            </td>
+            <td>
+                @if (item.SecondTeacherCourses != null)
+                {
+                    @foreach (var course in item.SecondTeacherCourses)
+                    {
+                        @if (course.Id != 0)
+                        {
+                            <a asp-controller="Courses" asp-action="Details" asp-route-id="@course.Id"> @course.Title </a> <br />
+                        }
+                    }
+                }
+
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
         }
     </tbody>
 </table>

@@ -5,13 +5,14 @@
 }
 
 <h1>Students</h1>
-
+<br />
 <form asp-controller="Students" asp-action="Index" method="get">
     <p>
         First Name <input type="text" name="searchFirstName" value="@ViewData["CurrentFilter"]" />
         Last Name: <input type="text" name="searchLastName" value="@ViewData["CurrentFilter2"]" />
         Index: <input type="text" name="index" value="@ViewData["CurrentFilter3"]" />
-        <input type="submit" value="Filter" />
+        <input type="submit" value="Filter" />  |
+        <a asp-action="Index"> Back to Full List</a>
     </p>
 </form>
 

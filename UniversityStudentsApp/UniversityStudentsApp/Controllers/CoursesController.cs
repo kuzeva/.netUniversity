@@ -45,6 +45,10 @@ namespace UniversityStudentsApp.Controllers
                 courses = courses.Where(s => s.Title.Contains(searchProgramme));
             }
 
+            courses = courses.Include(m => m.FirstTeacher);//.ThenInclude(m => m.FirstTeacherCourses);
+            courses = courses.Include(m => m.SecondTeacher);//.ThenInclude(m => m.SecondTeacherCourses);
+            courses = courses.Include(m => m.Students);
+
             return View(await courses.AsNoTracking().ToListAsync());
         }
 
@@ -59,6 +63,7 @@ namespace UniversityStudentsApp.Controllers
             var course = await _context.Courses
                 .Include(c => c.FirstTeacher)
                 .Include(c => c.SecondTeacher)
+                .Include(c => c.Students)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (course == null)
             {
@@ -71,8 +76,8 @@ namespace UniversityStudentsApp.Controllers
         // GET: Courses/Create
         public IActionResult Create()
         {
-            ViewData["FirstTeacherId"] = new SelectList(_context.Teacher, "Id", "FirstName");
-            ViewData["SecondTeacherId"] = new SelectList(_context.Teacher, "Id", "FirstName");
+            ViewData["FirstTeacherId"] = new SelectList(_context.Teacher, "Id", "FullName");
+            ViewData["SecondTeacherId"] = new SelectList(_context.Teacher, "Id", "FullName");
             return View();
         }
 
@@ -89,8 +94,8 @@ namespace UniversityStudentsApp.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["FirstTeacherId"] = new SelectList(_context.Teacher, "Id", "FirstName", course.FirstTeacherId);
-            ViewData["SecondTeacherId"] = new SelectList(_context.Teacher, "Id", "FirstName", course.SecondTeacherId);
+            ViewData["FirstTeacherId"] = new SelectList(_context.Teacher, "Id", "FulltName", course.FirstTeacherId);
+            ViewData["SecondTeacherId"] = new SelectList(_context.Teacher, "Id", "FullName", course.SecondTeacherId);
             return View(course);
         }
 
@@ -107,8 +112,8 @@ namespace UniversityStudentsApp.Controllers
             {
                 return NotFound();
             }
-            ViewData["FirstTeacherId"] = new SelectList(_context.Teacher, "Id", "FirstName", course.FirstTeacherId);
-            ViewData["SecondTeacherId"] = new SelectList(_context.Teacher, "Id", "FirstName", course.SecondTeacherId);
+            ViewData["FirstTeacherId"] = new SelectList(_context.Teacher, "Id", "FullName", course.FirstTeacherId);
+            ViewData["SecondTeacherId"] = new SelectList(_context.Teacher, "Id", "FullName", course.SecondTeacherId);
             return View(course);
         }
 
@@ -144,8 +149,8 @@ namespace UniversityStudentsApp.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["FirstTeacherId"] = new SelectList(_context.Teacher, "Id", "FirstName", course.FirstTeacherId);
-            ViewData["SecondTeacherId"] = new SelectList(_context.Teacher, "Id", "FirstName", course.SecondTeacherId);
+            ViewData["FirstTeacherId"] = new SelectList(_context.Teacher, "Id", "FullName", course.FirstTeacherId);
+            ViewData["SecondTeacherId"] = new SelectList(_context.Teacher, "Id", "FullName", course.SecondTeacherId);
             return View(course);
         }
 

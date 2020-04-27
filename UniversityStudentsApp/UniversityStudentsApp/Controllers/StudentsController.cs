@@ -42,6 +42,9 @@ namespace UniversityStudentsApp.Controllers
             {
                 students = students.Where(s => s.StudentId.Contains(index));
             }
+
+            students = students.Include(s => s.Courses).ThenInclude(s => s.Course);
+
             return View(await students.AsNoTracking().ToListAsync());
         }
 
