@@ -20,10 +20,32 @@ namespace UniversityStudentsApp.Controllers
         }
 
         // GET: Courses
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string searchTitle, string searchSemester, string searchProgramme)
         {
-            var universityStudentsAppContext = _context.Courses.Include(c => c.FirstTeacher).Include(c => c.SecondTeacher);
-            return View(await universityStudentsAppContext.ToListAsync());
+            //var universityStudentsAppContext = _context.Courses.Include(c => c.FirstTeacher).Include(c => c.SecondTeacher);
+            // return View(await universityStudentsAppContext.ToListAsync());
+
+            ViewData["CurrentFilter8"] = searchTitle;
+            ViewData["CurrentFilter9"] = searchSemester;
+            ViewData["CurrentFilter10"] = searchProgramme;
+
+            var courses = from s in _context.Courses
+                          select s;
+
+            if(!String.IsNullOrEmpty(searchTitle))
+            {
+                courses = courses.Where(s => s.Title.Contains(searchTitle));
+            }
+            if (!String.IsNullOrEmpty(searchSemester))
+            {
+                courses = courses.Where(s => s.Title.Contains(searchSemester));
+            }
+            if (!String.IsNullOrEmpty(searchProgramme))
+            {
+                courses = courses.Where(s => s.Title.Contains(searchProgramme));
+            }
+
+            return View(await courses.AsNoTracking().ToListAsync());
         }
 
         // GET: Courses/Details/5

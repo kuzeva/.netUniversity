@@ -4,7 +4,17 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<h1>Courses</h1>
+
+<form asp-controller="Courses" asp-action="Index" method="get">
+    <p>
+        Course: <input type="text" name="searchTitle" value="@ViewData["CurrentFilter8"]" />
+        Semester: <input type="text" name="searchLastName" value="@ViewData["CurrentFilter9"]" />
+        Programme: <input type="text" name="searchDegree" value="@ViewData["CurrentFilter10"]" />
+       
+        <input type="submit" value="Filter" />
+    </p>
+</form>
 
 <p>
     <a asp-action="Create">Create New</a>
